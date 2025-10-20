@@ -1,0 +1,25 @@
+@import "tailwindcss";
+:root {
+  --indigo-900: #0f152a;
+  --violet-600: #3c457b;
+  --burgundy: #7f2447;
+  --rose-400: #a66685;
+  --taupe-300: #c9b9a5;
+  --offwhite: #efe8e3;
+
+  --bg: var(--offwhite);
+  --text: #1c1c1c;
+  --muted-text: #4b4b4b;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  line-height: 1.55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
