@@ -273,42 +273,47 @@ const About = ({ education, certifications }) => (
 
 
 const Contact = ({ email }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Thank you for your message! This is a demo form.');
-  };
-
-  return (
-    <Section id="contact">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-indigo-900">Contact Me</h2>
-        <p className="mt-4 text-muted-text">
-          Have a question or proposal, or just want to say hello? Go ahead.
-        </p>
-      </div>
-      <form onSubmit={handleSubmit} className="mt-12 max-w-xl mx-auto">
-        <div className="grid grid-cols-1 gap-y-6">
-          <div>
-            <label htmlFor="name" className="sr-only">Full name</label>
-            <input type="text" name="name" id="name" required placeholder="Your Name" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50" />
-          </div>
-          <div>
-            <label htmlFor="email" className="sr-only">Email</label>
-            <input id="email" name="email" type="email" autoComplete="email" required placeholder="Your Email" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50" />
-          </div>
-          <div>
-            <label htmlFor="message" className="sr-only">Message</label>
-            <textarea id="message" name="message" rows="4" required placeholder="Your Message" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50"></textarea>
-          </div>
-        </div>
-        <div className="mt-6 text-center">
-          <button type="submit" className="inline-block rounded-full px-10 py-4 font-semibold transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-burgundy-700/50 bg-indigo-900 text-white shadow-lg">
-            Send Message
-          </button>
-        </div>
-      </form>
-    </Section>
-  );
+    // This form uses the 'mailto:' action. It will not send an email directly.
+    // Instead, it will try to open the user's default *desktop* email client
+    // (like Outlook, Apple Mail, etc.) with the fields pre-filled.
+    // NOTE: This will NOT work for users who only use webmail (like Gmail.com).
+    return (
+        <Section id="contact">
+            <div className="max-w-2xl mx-auto text-center">
+                <h2 className="text-4xl font-bold text-indigo-900">Contact Me</h2>
+                <p className="mt-4 text-muted-text">
+                    Have a question or proposal, or just want to say hello? Go ahead.
+                </p>
+            </div>
+            <form
+                action={`mailto:${email}?subject=Contact Form Submission from Portfolio`}
+                method="POST"
+                encType="text/plain" // This is required for mailto: to format the body
+                className="mt-12 max-w-xl mx-auto"
+            >
+                <div className="grid grid-cols-1 gap-y-6">
+                    <div>
+                        <label htmlFor="name" className="sr-only">Full name</label>
+                        {/* The 'name' attribute is what labels the text in the email body */}
+                        <input type="text" name="Name" id="name" required placeholder="Your Name" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50" />
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="sr-only">Email</label>
+                        <input id="email" name="Reply-To-Email" type="email" autoComplete="email" required placeholder="Your Email" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50" />
+                    </div>
+                    <div>
+                        <label htmlFor="message" className="sr-only">Message</label>
+                        <textarea id="message" name="Message" rows="4" required placeholder="Your Message" className="block w-full rounded-lg border-black/10 bg-white p-3 shadow-sm focus:border-burgundy-700 focus:ring-2 focus:ring-burgundy-700/50"></textarea>
+                    </div>
+                </div>
+                <div className="mt-6 text-center">
+                    <button type="submit" className="inline-block rounded-full px-10 py-4 font-semibold transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-burgundy-700/50 bg-indigo-900 text-white shadow-lg">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </Section>
+    );
 };
 
 const Footer = ({ name }) => {
